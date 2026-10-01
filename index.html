@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Manager, Creador y Developer</title>
+
+    <meta name="description" content="Links, proyectos y contacto de Ezequiel García Gilabert. Developer, manager y creador.">
+    <meta name="theme-color" content="#0a080f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fff0dc" media="(prefers-color-scheme: light)">
+    <meta name="color-scheme" content="dark light">
+
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Ezequiel García Gilabert">
+    <meta property="og:description" content="Hago más cosas de las que entran en una bio...">
+    <meta property="og:image" content="https://ezgilabert.github.io/ezequiel-dev/assets/img/perfil.jpg">
+    <meta property="og:image:alt" content="Foto de perfil de Ezequiel García Gilabert">
+    <meta property="og:url" content="https://ezgilabert.github.io/ezequiel-dev/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ezequiel García Gilabert">
+    <meta name="twitter:description" content="Hago más cosas de las que entran en una bio...">
+    <meta name="twitter:image" content="https://ezgilabert.github.io/ezequiel-dev/assets/img/perfil.jpg">
+    <meta name="twitter:image:alt" content="Foto de perfil de Ezequiel García Gilabert">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+    <!-- Preload responsive backgrounds for LCP; media and type select the matching asset. -->
+    <link rel="preload" as="image" type="image/avif"
+          href="assets/img/bg-desktop.avif" media="(min-width: 641px)">
+    <link rel="preload" as="image" type="image/avif"
+          href="assets/img/bg-mobile.avif" media="(max-width: 640px)">
+
+    <link rel="preload" as="image" type="image/avif" href="assets/img/perfil.avif">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap">
+
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+    <link rel="stylesheet" href="css/main.css">
+
+        <!-- Apply the saved or system theme before first paint to prevent a flash. -->
+    <script src="js/theme-init.js"></script>
+</head>
+<body>
+
+    <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-pressed="true"
+        aria-label="Cambiar tema">
+        <i class="ph-bold ph-moon" id="theme-icon" aria-hidden="true"></i>
+    </button>
+
+    <canvas id="snow-canvas" aria-hidden="true"></canvas>
+
+    <main class="linktree" aria-labelledby="profile-name">
+
+        <header class="linktree__header">
+            <figure class="avatar">
+                <picture>
+                    <source srcset="assets/img/perfil.avif" type="image/avif">
+                    <source srcset="assets/img/perfil.webp" type="image/webp">
+                    <img
+                        src="assets/img/perfil.jpg"
+                        alt="Foto de perfil de Ezequiel García Gilabert"
+                        width="80" height="80"
+                        loading="eager"
+                        decoding="async">
+                </picture>
+            </figure>
+        </header>
+
+        <section class="linktree__info">
+            <h1 class="name" id="profile-name">
+                Ezequiel<br>García Gilabert
+            </h1>
+            <p class="bio">Hago más cosas de las que entran en una bio...</p>
+        </section>
+
+        <nav class="links" aria-label="Enlaces principales">
+
+            <a href="https://ezgilabert.github.io/ezequiel-managment/" 
+               target="_blank" rel="noopener noreferrer"
+               class="link-btn link-btn--primary">
+                <span class="link-btn__icon" aria-hidden="true">
+                    <i class="ph-bold ph-users-three"></i>
+                </span>
+                <span class="link-btn__text">
+                    <span class="link-btn__title">Soñar, planificar, actuar</span>
+                    <span class="link-btn__sub">Management, ideas, recursos y más</span>
+                </span>
+                <i class="ph-bold ph-arrow-right link-btn__arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://ezgilabert.github.io/ezequiel-dev/"
+               target="_blank" rel="noopener noreferrer"
+               class="link-btn link-btn--primary">
+                <span class="link-btn__icon" aria-hidden="true">
+                    <i class="ph-bold ph-code"></i>
+                </span>
+                <span class="link-btn__text">
+                    <span class="link-btn__title">Mi lado developer</span>
+                    <span class="link-btn__sub">Trayectoria, tecnologías, proyectos</span>
+                </span>
+                <i class="ph-bold ph-arrow-right link-btn__arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://linkedin.com/in/ezequiel-garcia-gilabert"
+               target="_blank" rel="noopener noreferrer"
+               class="link-btn link-btn--secondary">
+                <span class="link-btn__icon" aria-hidden="true">
+                    <i class="ph-bold ph-linkedin-logo"></i>
+                </span>
+                <span class="link-btn__title">LinkedIn</span>
+                <i class="ph-bold ph-arrow-up-right link-btn__arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://www.instagram.com/ezeegilabert"
+               target="_blank" rel="noopener noreferrer"
+               class="link-btn link-btn--secondary">
+                <span class="link-btn__icon" aria-hidden="true">
+                    <i class="ph-bold ph-instagram-logo"></i>
+                </span>
+                <span class="link-btn__title">Instagram</span>
+                <i class="ph-bold ph-arrow-up-right link-btn__arrow" aria-hidden="true"></i>
+            </a>
+
+                <a href="mailto:ezequielgarciagilabert@gmail.com"
+                    class="link-btn link-btn--secondary">
+                <span class="link-btn__icon" aria-hidden="true">
+                    <i class="ph-bold ph-envelope-simple"></i>
+                </span>
+                <span class="link-btn__title">Mail</span>
+                <i class="ph-bold ph-arrow-up-right link-btn__arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://wa.me/5491164135977"
+               target="_blank" rel="noopener noreferrer"
+               class="link-btn link-btn--secondary">
+                <span class="link-btn__icon" aria-hidden="true">
+                    <i class="ph-bold ph-whatsapp-logo"></i>
+                </span>
+                <span class="link-btn__title">WhatsApp</span>
+                <i class="ph-bold ph-arrow-up-right link-btn__arrow" aria-hidden="true"></i>
+            </a>
+
+        </nav>
+
+        <footer class="footer">
+            © <span id="year"></span> ·
+            <a href="https://ezgilabert.github.io/ezequiel-dev/"
+               target="_blank" rel="noopener noreferrer"
+               class="footer-link">Ezequiel García Gilabert</a>
+        </footer>
+
+    </main>
+
+    <!-- Load shared utilities and modules before the bootstrap. -->
+    <script src="js/utils.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/snow.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

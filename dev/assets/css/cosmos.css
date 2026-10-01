@@ -1,0 +1,52 @@
+/* =====================================================
+ * cosmos.css
+ * Shockwave ignition animation.
+ * Depends on: base.css.
+ * ===================================================== */
+
+main.glass-card {
+    transition: transform 0.6s cubic-bezier(0.22, 1.4, 0.36, 1),
+                filter 0.5s ease, box-shadow 0.6s ease;
+    will-change: transform, filter, box-shadow;
+}
+
+main.glass-card.wave-ignite {
+    animation: waveIgnite 1.15s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+@keyframes waveIgnite {
+    0%   { transform: translate(0, 0); filter: brightness(1) saturate(1) drop-shadow(0 0 0 rgba(255, 200, 120, 0)); }
+    8%   { transform: translate(-1.5px, 1px); filter: brightness(1.55) saturate(1.35) drop-shadow(0 0 22px rgba(255, 210, 140, 0.85)) drop-shadow(0 0 40px rgba(255, 160, 60, 0.55)); }
+    20%  { transform: translate(1.2px, -0.8px); filter: brightness(1.35) saturate(1.25) drop-shadow(0 0 16px rgba(255, 200, 120, 0.65)) drop-shadow(0 0 30px rgba(255, 150, 50, 0.4)); }
+    38%  { transform: translate(-0.8px, 0.6px); filter: brightness(1.18) saturate(1.14) drop-shadow(0 0 10px rgba(255, 190, 110, 0.45)) drop-shadow(0 0 20px rgba(255, 140, 50, 0.28)); }
+    58%  { transform: translate(0.4px, -0.3px); filter: brightness(1.08) saturate(1.06) drop-shadow(0 0 6px rgba(255, 180, 100, 0.28)) drop-shadow(0 0 12px rgba(255, 130, 40, 0.16)); }
+    78%  { transform: translate(-0.15px, 0.1px); filter: brightness(1.03) saturate(1.02) drop-shadow(0 0 3px rgba(255, 170, 90, 0.14)) drop-shadow(0 0 6px rgba(255, 120, 40, 0.08)); }
+    100% { transform: translate(0, 0); filter: brightness(1) saturate(1) drop-shadow(0 0 0 rgba(255, 200, 120, 0)); }
+}
+
+main.glass-card.wave-ignite::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at 50% 50%,
+        rgba(255, 220, 160, 0.35) 0%,
+        rgba(255, 170, 80, 0.18) 35%,
+        rgba(255, 120, 40, 0.06) 60%,
+        transparent 80%
+    );
+    opacity: 0;
+    animation: waveIgniteGlow 1.15s cubic-bezier(0.25, 1, 0.5, 1) both;
+    z-index: 5;
+}
+
+@keyframes waveIgniteGlow {
+    0%   { opacity: 0; }
+    8%   { opacity: 1; }
+    30%  { opacity: 0.7; }
+    55%  { opacity: 0.35; }
+    80%  { opacity: 0.12; }
+    100% { opacity: 0; }
+}

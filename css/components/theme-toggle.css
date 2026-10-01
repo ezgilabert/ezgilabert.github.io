@@ -1,0 +1,37 @@
+.theme-toggle {
+    position: fixed;
+    top: max(1.25rem, env(safe-area-inset-top));
+    right: max(1.25rem, env(safe-area-inset-right));
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+    font-size: 1.1rem;
+    padding: 0;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+html:not(.dark) .theme-toggle {
+    background: rgba(0, 0, 0, 0.10);
+    border-color: rgba(0, 0, 0, 0.10);
+    color: #1c1917;
+}

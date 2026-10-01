@@ -1,0 +1,122 @@
+/* =====================================================
+ * components/profile-header.css
+ * Photo, name, role, location, and bio section.
+ * Depends on: base.css.
+ * Used by: index.html (.profile-header).
+ * ===================================================== */
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- Nombre --- */
+.profile-name {
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #18181b;
+    line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+    .profile-name { font-size: 1.875rem; }
+}
+
+.dark .profile-name { color: #ffffff; }
+
+/* --- Rol --- */
+.profile-role {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #52525b;
+    margin-top: 0.25rem;
+}
+
+@media (min-width: 640px) {
+    .profile-role { font-size: 0.875rem; }
+}
+
+.dark .profile-role { color: #a1a1aa; }
+
+/* --- Location and language --- */
+.profile-location {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #71717a;
+}
+
+.dark .profile-location { color: rgba(161, 161, 170, 0.8); }
+
+.profile-location-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.2s ease;
+    text-decoration: none;
+}
+
+.profile-location-link:hover { color: #2563eb; }
+.dark .profile-location-link:hover { color: #fbbf24; }
+
+.profile-location-link i {
+    color: #3b82f6;
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.dark .profile-location-link i { color: #f59e0b; }
+
+.profile-location-link:hover i { transform: scale(1.1); }
+
+.profile-location-link span {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(0, 0, 0, 0.20);
+    transition: text-decoration-color 0.2s ease;
+}
+
+.dark .profile-location-link span {
+    text-decoration-color: rgba(255, 255, 255, 0.20);
+}
+
+.profile-location-link:hover span {
+    text-decoration-color: #2563eb;
+}
+
+.dark .profile-location-link:hover span {
+    text-decoration-color: #fbbf24;
+}
+
+.profile-location-divider {
+    color: #a1a1aa;
+}
+
+.dark .profile-location-divider { color: #71717a; }
+
+/* --- Bio --- */
+.profile-bio {
+    font-size: 0.75rem;
+    line-height: 1.625;
+    color: #3f3f46;
+}
+
+@media (min-width: 640px) {
+    .profile-bio { font-size: 0.875rem; }
+}
+
+.dark .profile-bio { color: rgba(212, 212, 216, 0.8); }
+
+/* Improve readability on mobile. */
+@media (max-width: 767px) {
+    .profile-bio {
+        font-size: 0.8rem;
+        line-height: 1.7;
+    }
+}

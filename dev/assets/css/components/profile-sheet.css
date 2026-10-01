@@ -1,0 +1,325 @@
+/* =====================================================
+ * components/profile-sheet.css
+ * Mobile glass bottom sheet with a fixed avatar.
+ * ===================================================== */
+
+/* ============================================================
+ * AVATAR — Hidden on desktop, fixed in the mobile corner
+ * ============================================================ */
+.profile-trigger {
+    display: none;
+}
+
+/* ============================================================
+ * BACKDROP
+ * ============================================================ */
+.profile-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 90;
+}
+
+.profile-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ============================================================
+ * CERRAR
+ * ============================================================ */
+.profile-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.08);
+    border: none;
+    color: #52525b;
+    font-size: 1rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dark .profile-close {
+    background: rgba(255, 255, 255, 0.15);
+    color: #e4e4e7;
+}
+
+/* ============================================================
+ * HANDLE
+ * ============================================================ */
+.profile-sheet-handle {
+    position: absolute;
+    top: 0.625rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2.5rem;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 9999px;
+    z-index: 5;
+    display: none;
+}
+
+/* ============================================================
+ * MOBILE (< 768px)
+ * ============================================================ */
+@media (max-width: 767px) {
+
+    /* ============================================================
+     * FIX CRÍTICO: el body ya no es flex, ocupa todo el ancho
+     * ============================================================ */
+    body.app-body {
+        display: block !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100vh !important;
+        min-height: 100dvh !important;
+    }
+
+    /* GLASS CARD — ocupa todo el ancho del viewport */
+    .glass-card {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-height: 100vh !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(12, 10, 20, 0.94) !important;
+        border: none !important;
+        box-shadow: none !important;
+        position: relative !important;
+        color: #eceeed !important;
+    }
+
+    /* Light mode */
+    html:not(.dark) .glass-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        color: #111827 !important;
+    }
+
+    .glass-card.wave-ignite,
+    .glass-card.wave-ignite * {
+        animation: none !important;
+        filter: none !important;
+    }
+
+    /* Grid ocupa todo el ancho */
+    .app-grid {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    /* Panel ocupa todo el ancho */
+    .panel-right {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding-top: 4.5rem !important;
+        padding-bottom: 5rem !important;
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+
+    .panel-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        min-height: 100vh;
+    }
+
+    /* ============================================================
+    * AVATAR — Fixed in the top-right corner
+     * ============================================================ */
+    #profile-trigger.profile-trigger {
+        display: block;
+        position: fixed;
+        top: 0.35rem;
+        right: 0.35rem;
+        left: auto;
+        bottom: auto;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 9999px;
+        overflow: hidden;
+        padding: 0;
+        border: 2px solid rgba(251, 191, 36, 0.5);
+        background: transparent;
+        cursor: pointer;
+        z-index: 95;
+        box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.3),
+                    0 0 0 2px rgba(251, 191, 36, 0.15);
+        -webkit-tap-highlight-color: transparent;
+        transition: opacity 0.25s ease;
+        transform: none !important;
+        translate: none !important;
+        margin: 0 !important;
+    }
+
+    #profile-trigger.profile-trigger img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 5%;
+        pointer-events: none;
+    }
+
+    /* Hide the avatar while the profile sheet is open. */
+    body:has(.profile-sidebar.is-open) #profile-trigger.profile-trigger {
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* Light mode: borde violeta */
+    html:not(.dark) #profile-trigger.profile-trigger {
+        border-color: rgba(124, 58, 237, 0.6);
+        box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.15),
+                    0 0 0 2px rgba(124, 58, 237, 0.15);
+    }
+
+    /* ============================================================
+     * SHEET
+     * ============================================================ */
+    .profile-sidebar {
+        display: block !important;
+        position: fixed !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        top: auto !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        max-height: 85vh !important;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        grid-column: auto !important;
+        border-radius: 1.5rem 1.5rem 0 0 !important;
+        border: none !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+        transform: translateY(120%) !important;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        z-index: 100 !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        will-change: transform;
+
+        opacity: 1 !important;
+        background: rgba(15, 10, 8, 0.35) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+        backdrop-filter: blur(20px) saturate(1.8) !important;
+
+        color: #eceeed !important;
+        box-shadow: 0 -20px 40px -10px rgba(0, 0, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .profile-sidebar::-webkit-scrollbar { display: none; }
+
+    .profile-sidebar.is-open {
+        transform: translateY(0) !important;
+    }
+
+    .profile-sidebar::before,
+    .profile-sidebar::after {
+        display: none !important;
+    }
+
+    .profile-sidebar-inner {
+        position: relative !important;
+        z-index: 1 !important;
+        padding: 2.25rem 1.5rem 2rem;
+        height: auto !important;
+    }
+
+    /* Dark mode del sheet */
+    .profile-sidebar .profile-name {
+        color: #ffffff !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .profile-sidebar .profile-role {
+        color: #e4e4e7 !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .profile-sidebar .profile-location,
+    .profile-sidebar .profile-location-divider {
+        color: #a1a1aa !important;
+    }
+    .profile-sidebar .profile-location-link span {
+        color: #e4e4e7 !important;
+    }
+    .profile-sidebar .profile-bio {
+        color: #e4e4e7 !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+    .profile-sidebar .contact-links-title {
+        color: #a1a1aa !important;
+    }
+    .profile-sidebar .contact-links {
+        border-top-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* Light mode del sheet */
+    html:not(.dark) .profile-sidebar {
+        background: rgba(243, 240, 247, 0.95) !important;
+        color: #111827 !important;
+        border-top-color: rgba(0, 0, 0, 0.08) !important;
+        box-shadow: 0 -20px 40px -10px rgba(0, 0, 0, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    html:not(.dark) .profile-sidebar .profile-name {
+        color: #18181b !important;
+        text-shadow: none;
+    }
+    html:not(.dark) .profile-sidebar .profile-role,
+    html:not(.dark) .profile-sidebar .profile-bio,
+    html:not(.dark) .profile-sidebar .profile-location-link span {
+        color: #3f3f46 !important;
+        text-shadow: none;
+    }
+    html:not(.dark) .profile-sidebar .profile-location,
+    html:not(.dark) .profile-sidebar .profile-location-divider,
+    html:not(.dark) .profile-sidebar .contact-links-title {
+        color: #71717a !important;
+    }
+    html:not(.dark) .profile-sidebar .contact-links {
+        border-top-color: rgba(0, 0, 0, 0.10) !important;
+    }
+
+    .profile-backdrop { display: block; }
+    .profile-trigger { display: block; }
+    .profile-close { display: inline-flex; }
+    .profile-sheet-handle { display: block; }
+}
+
+/* ============================================================
+ * DESKTOP (>= 768px)
+ * ============================================================ */
+@media (min-width: 768px) {
+    .profile-trigger,
+    .profile-backdrop,
+    .profile-close,
+    .profile-sheet-handle {
+        display: none !important;
+    }
+}

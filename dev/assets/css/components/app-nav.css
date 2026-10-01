@@ -1,0 +1,315 @@
+/* =====================================================
+ * components/app-nav.css
+ * - Desktop: tabs + toggles en una fila arriba.
+ * - Mobile: toggles arriba (barra fija full-width), tabs abajo (barra fija).
+ * ===================================================== */
+
+.app-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+@media (min-width: 640px) {
+    .app-nav { gap: 1.25rem; font-size: 0.875rem; }
+}
+
+.dark .app-nav {
+    border-bottom-color: rgba(255, 255, 255, 0.10);
+}
+
+/* TABS */
+.app-nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .app-nav-tabs { gap: 1.25rem; }
+}
+
+.app-nav-tab {
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.2s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    color: rgba(31, 41, 55, 0.60);
+    font-weight: 400;
+}
+
+.app-nav-tab:hover { color: rgba(31, 41, 55, 0.95); }
+.app-nav-tab.active { color: #111827; font-weight: 600; }
+
+.app-nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #111827;
+    border-radius: 9999px;
+}
+
+.dark .app-nav-tab { color: rgba(255, 255, 255, 0.60); }
+.dark .app-nav-tab:hover { color: rgba(255, 255, 255, 0.95); }
+.dark .app-nav-tab.active { color: #ffffff; font-weight: 600; }
+.dark .app-nav-tab.active::after { background-color: #ffffff; }
+
+/* TOGGLES */
+.app-nav-toggles {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+@media (min-width: 640px) {
+    .app-nav-toggles { gap: 0.5rem; }
+}
+
+.btn-toggle {
+    height: 1.75rem;
+    padding: 0 0.625rem;
+    border-radius: 9999px;
+    font-size: 10px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #27272a;
+    background: rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+    .btn-toggle {
+        height: 2rem;
+        padding: 0 0.75rem;
+        font-size: 11px;
+        gap: 0.375rem;
+    }
+}
+
+.btn-toggle:hover { background: rgba(0, 0, 0, 0.15); }
+.btn-toggle:active { transform: scale(0.95); }
+
+.btn-toggle:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.dark .btn-toggle {
+    color: #e4e4e7;
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+.dark .btn-toggle:hover {
+    background: rgba(255, 255, 255, 0.20);
+}
+
+.btn-toggle-label {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .btn-toggle-label { display: inline; }
+}
+
+/* ============================================================
+ * MOBILE (< 768px): barra superior + barra inferior
+ * ============================================================ */
+@media (max-width: 767px) {
+
+    .app-nav {
+        display: contents;
+    }
+
+    /* --- TOGGLES: barra fija ARRIBA (full width) --- */
+    .app-nav-toggles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;                        /* FULL WIDTH */
+        z-index: 60;
+        margin-left: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.6rem 0.75rem;
+        /* Leave room for the avatar on the right. */
+        padding-right: 3.75rem;
+        background: rgba(12, 10, 20, 0.85);
+        backdrop-filter: blur(16px) saturate(1.5);
+        -webkit-backdrop-filter: blur(16px) saturate(1.5);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        height: 3.25rem;                 /* Fixed height aligned with the avatar. */
+        box-sizing: border-box;
+    }
+
+    .btn-toggle {
+        height: 1.75rem;
+        padding: 0 0.5rem;
+        font-size: 10px;
+        border-radius: 9999px;
+    }
+
+    #theme-toggle-btn .btn-toggle-label { display: none; }
+
+    /* --- TABS: barra fija ABAJO --- */
+    .app-nav-tabs {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+        padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
+        background: rgba(12, 10, 20, 0.94);
+        backdrop-filter: blur(20px) saturate(1.5);
+        -webkit-backdrop-filter: blur(20px) saturate(1.5);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 -10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .app-nav-tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0.25rem;
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.55);
+        transition: color 0.2s ease, transform 0.15s ease;
+        min-height: 44px;
+        position: relative;
+    }
+
+    .app-nav-tab:active { transform: scale(0.94); }
+    .app-nav-tab:hover { color: rgba(255, 255, 255, 0.9); }
+
+    .app-nav-tab.active {
+        color: #fbbf24;
+        font-weight: 600;
+    }
+
+    .app-nav-tab.active::after {
+        content: '';
+        position: absolute;
+        top: 0.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1.5rem;
+        height: 2px;
+        background-color: currentColor;
+        border-radius: 9999px;
+        bottom: auto;
+    }
+
+    /* ============================================================
+     * LIGHT MODE en mobile
+     * ============================================================ */
+    html:not(.dark) .app-nav-toggles {
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom-color: rgba(0, 0, 0, 0.06);
+    }
+
+    html:not(.dark) .app-nav-tabs {
+        background: rgba(255, 255, 255, 0.95);
+        border-top-color: rgba(0, 0, 0, 0.08);
+        box-shadow: 0 -10px 30px -10px rgba(0, 0, 0, 0.15);
+    }
+
+    html:not(.dark) .app-nav-tab { color: rgba(31, 41, 55, 0.55); }
+    html:not(.dark) .app-nav-tab:hover { color: rgba(31, 41, 55, 0.9); }
+    html:not(.dark) .app-nav-tab.active {
+        color: #7c3aed;
+    }
+
+    /* ============================================================
+     * ESPACIO para las 2 barras
+     * ============================================================ */
+    .panel-right {
+        padding-top: 4.5rem !important;
+        padding-bottom: 5rem !important;
+    }
+		
+}
+
+/* ============================================================
+ * FIX: eliminar will-change en mobile (rompe position:fixed)
+ * ============================================================ */
+@media (max-width: 767px) {
+    main.glass-card {
+        will-change: auto !important;
+    }
+}
+
+/* ============================================================
+ * Hide the navbar while the profile sheet is open.
+ * ============================================================ */
+@media (max-width: 767px) {
+    body:has(.profile-sidebar.is-open) .app-nav-tabs,
+    body:has(.profile-sidebar.is-open) .app-nav-toggles {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transition: opacity 0.2s ease !important;
+    }
+}
+
+/* ============================================================
+ * FIX: navbar inferior siempre pegado al fondo del viewport
+ * ============================================================ */
+@media (max-width: 767px) {
+    html, body {
+        overflow-x: hidden;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    /* Keep the bottom navigation fixed to the viewport. */
+    .app-nav-tabs {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        z-index: 9999 !important;
+    }
+
+    /* Keep the top navigation fixed to the viewport. */
+    .app-nav-toggles {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: auto !important;
+        z-index: 9999 !important;
+    }
+
+    /* Keep content clear of the fixed navigation. */
+    .panel-right {
+        padding-bottom: 6rem !important;
+    }
+}

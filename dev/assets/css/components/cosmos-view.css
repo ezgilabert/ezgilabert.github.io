@@ -1,0 +1,89 @@
+.app-nav-toggles .cosmos-view-toggle {
+    justify-content: center;
+    width: 2rem;
+    padding: 0;
+}
+
+.app-nav-toggles .cosmos-view-toggle i { font-size: 0.95rem; }
+
+.cosmos-view-exit {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 10001;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 50%;
+    color: #27272a;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.cosmos-view-exit[hidden] { display: none; }
+.cosmos-view-exit i { font-size: 1.25rem; }
+
+.cosmos-view-theme-toggle {
+    right: 5.25rem;
+}
+
+.cosmos-view-exit:hover { transform: translateY(-2px); }
+.cosmos-view-exit:active { transform: scale(0.94); }
+.cosmos-view-exit:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.cosmos-view-exit:focus-visible { outline: 2px solid #f97316; outline-offset: 3px; }
+
+.dark .cosmos-view-exit {
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #f4f4f5;
+    background: rgba(24, 24, 27, 0.82);
+}
+
+body.cosmos-viewing main.glass-card {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.985);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+}
+
+body.cosmos-viewing { cursor: grab; touch-action: none; user-select: none; }
+body.cosmos-viewing.cosmos-panning { cursor: grabbing; }
+
+body.cosmos-viewing #profile-trigger { opacity: 0; pointer-events: none; }
+
+body.cosmos-viewing .cosmos-view-exit {
+    color: #fff;
+    background: rgba(249, 115, 22, 0.9);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 767px) {
+    .cosmos-view-exit {
+        right: 1rem;
+        bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+
+    .cosmos-view-theme-toggle {
+        right: 4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-nav-toggles .cosmos-view-toggle,
+    .cosmos-view-exit,
+    body.cosmos-viewing main.glass-card {
+        transition: none;
+    }
+}

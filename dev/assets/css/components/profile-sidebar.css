@@ -1,0 +1,76 @@
+/* =====================================================
+ * components/profile-sidebar.css
+ * Left sidebar background, gradients, and internal layout.
+ * Depends on: base.css color variables.
+ * Used by: index.html (.profile-sidebar and .profile-sidebar-inner).
+ * ===================================================== */
+
+/* Preserve the md:col-span-5 grid behavior; do not switch this to flex. */
+.profile-sidebar {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    background: linear-gradient(135deg,
+        rgba(245, 158, 11, 0.05) 0%,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(168, 85, 247, 0.05) 100%);
+}
+
+@media (min-width: 768px) {
+    .profile-sidebar {
+        border-bottom: none;
+        border-right: 1px solid rgba(0, 0, 0, 0.10);
+    }
+}
+
+.dark .profile-sidebar {
+    border-color: rgba(245, 158, 11, 0.20);
+    background: linear-gradient(135deg,
+        rgba(120, 53, 15, 0.20) 0%,
+        rgba(69, 10, 10, 0.15) 50%,
+        rgba(0, 0, 0, 0.30) 100%);
+}
+
+.dark .profile-sidebar {
+    border-right-color: rgba(245, 158, 11, 0.20);
+}
+
+/* Decorative overlay with a subtle gradient. */
+.profile-sidebar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top right,
+        rgba(245, 158, 11, 0.10) 0%,
+        rgba(249, 115, 22, 0.05) 50%,
+        transparent 100%);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.dark .profile-sidebar::before {
+    opacity: 1;
+}
+
+/* Contenido interno: acá vive el flex column */
+.profile-sidebar-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .profile-sidebar-inner { padding: 2rem; }
+}
+
+@media (min-width: 768px) {
+    .profile-sidebar-inner {
+        height: auto;
+        justify-content: flex-start;
+        padding: 2.5rem;
+    }
+}

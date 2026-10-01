@@ -1,0 +1,99 @@
+.linktree {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 460px;
+    background: var(--card-bg);
+    backdrop-filter: blur(30px) saturate(1.5);
+    -webkit-backdrop-filter: blur(30px) saturate(1.5);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 2.25rem 1.85rem;
+    box-shadow:
+        0 30px 80px -20px rgba(0, 0, 0, 0.50),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    animation: cardIn 0.7s var(--ease-out-back) both;
+    transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+html:not(.dark) .linktree {
+    box-shadow:
+        0 30px 80px -20px rgba(0, 0, 0, 0.22),
+        0 0 0 1px rgba(255, 255, 255, 0.60) inset;
+}
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.linktree__header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.avatar {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 9999px;
+    padding: 3px;
+    background: rgba(255, 255, 255, 0.40);
+    box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.30);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+/* Keep the picture wrapper sized so the avatar does not collapse. */
+.avatar picture,
+.avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 9999px;
+}
+
+.avatar img {
+    object-fit: cover;
+    object-position: center 35%;
+    transform: scale(1.6);
+    transform-origin: center 35%;
+    border: 2px solid var(--card-bg);
+}
+
+.linktree__info {
+    text-align: center;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--divider);
+}
+
+html:not(.dark) .linktree__info {
+    border-color: rgba(0, 0, 0, 0.10);
+}
+
+.name {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.bio {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-bottom: 1.5rem;
+    list-style: none;
+}

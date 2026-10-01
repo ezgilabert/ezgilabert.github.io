@@ -1,0 +1,156 @@
+/* =====================================================
+ * components.css
+ * Shared profile, card, and form styles.
+ * Depends on: base.css.
+ *
+ * Component styles are loaded through link elements in index.html:
+ *   - profile-sidebar.css
+ *   - profile-header.css
+ *   - contact-links.css
+ *   - app-nav.css
+ *   - experience-card.css
+ *   - education-card.css
+ *   - skills.css
+ *   - contact-csharp.css
+ * ===================================================== */
+
+/* --- Profile photo --- */
+.profile-photo-frame {
+    position: relative;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 9999px;
+    overflow: hidden;
+    background-color: #e4e4e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    border: 2px solid rgba(59, 130, 246, 0.6);
+    box-shadow: 0 12px 30px -8px rgba(59, 130, 246, 0.35),
+                0 0 0 4px rgba(59, 130, 246, 0.08);
+}
+@media (min-width: 640px) {
+    .profile-photo-frame { width: 7rem; height: 7rem; }
+}
+.profile-photo-frame:hover {
+    border-color: rgba(37, 99, 235, 0.9);
+    box-shadow: 0 15px 40px -8px rgba(59, 130, 246, 0.5),
+                0 0 0 6px rgba(59, 130, 246, 0.12);
+    transform: translateY(-2px);
+}
+.dark .profile-photo-frame {
+    background-color: #27272a;
+    border: 2px solid rgba(251, 191, 36, 0.4);
+    box-shadow: 0 12px 30px -8px rgba(251, 191, 36, 0.25),
+                0 0 0 4px rgba(251, 191, 36, 0.06);
+}
+.dark .profile-photo-frame:hover {
+    border-color: rgba(251, 191, 36, 0.7);
+    box-shadow: 0 15px 40px -8px rgba(251, 191, 36, 0.4),
+                0 0 0 6px rgba(251, 191, 36, 0.1);
+}
+.profile-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 05%;
+}
+
+/* --- Profile cards (experience and education) --- */
+.profile-card {
+    position: relative;
+    border-radius: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dark .profile-card {
+    background: rgba(20, 15, 30, 0.45);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.profile-card:hover,
+.profile-card.expanded {
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 25px -8px rgba(124, 58, 237, 0.18);
+}
+
+.dark .profile-card:hover,
+.dark .profile-card.expanded {
+    background: rgba(25, 18, 35, 0.55);
+    border-color: rgba(249, 115, 22, 0.25);
+    box-shadow: 0 8px 30px -8px rgba(249, 115, 22, 0.25);
+}
+
+.profile-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    user-select: none;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.profile-card-header:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 0.25rem;
+}
+
+.profile-chevron {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.06);
+    color: #6b7280;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.3s ease, color 0.3s ease;
+    margin-top: 2px;
+}
+.dark .profile-chevron {
+    background: rgba(255, 255, 255, 0.08);
+    color: #d4d4d8;
+}
+.profile-card:hover .profile-chevron,
+.profile-card.expanded .profile-chevron {
+    background: rgba(124, 58, 237, 0.15);
+    color: #7c3aed;
+}
+.dark .profile-card:hover .profile-chevron,
+.dark .profile-card.expanded .profile-chevron {
+    background: rgba(249, 115, 22, 0.18);
+    color: #f97316;
+}
+.profile-card.expanded .profile-chevron { transform: rotate(180deg); }
+
+.profile-card-body {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.35s ease, margin-top 0.35s ease;
+    margin-top: 0;
+}
+.profile-card.expanded .profile-card-body {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 0.75rem;
+}

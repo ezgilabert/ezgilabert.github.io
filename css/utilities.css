@@ -1,0 +1,20 @@
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    body::before {
+        animation: none;
+    }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .linktree {
+        background: rgba(22, 18, 25, 0.92);
+    }
+    html:not(.dark) .linktree {
+        background: rgba(255, 255, 255, 0.92);
+    }
+}

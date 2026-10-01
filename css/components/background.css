@@ -1,0 +1,55 @@
+/* Responsive background with Ken Burns motion and format fallbacks. */
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: -5%;
+
+    /* Fallback for browsers without image-set(). */
+    background-image: url('../../assets/img/bg-mobile.webp');
+
+    /* Prefer AVIF where image-set() is supported. */
+    background-image: image-set(
+        url('../../assets/img/bg-mobile.avif') type('image/avif'),
+        url('../../assets/img/bg-mobile.webp') type('image/webp')
+    );
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -2;
+    animation: cameraMove 18s var(--ease-smooth) infinite alternate;
+    transition: filter 0.7s ease;
+    will-change: transform;
+}
+
+@media (min-width: 641px) {
+    body::before {
+        background-image: url('../../assets/img/bg-desktop.webp');
+        background-image: image-set(
+            url('../../assets/img/bg-desktop.avif') type('image/avif'),
+            url('../../assets/img/bg-desktop.webp') type('image/webp')
+        );
+    }
+}
+
+html:not(.dark) body::before {
+    filter: brightness(1.2) saturate(1.15) contrast(1.02);
+}
+
+@keyframes cameraMove {
+    from { transform: scale(1.05) translate(0, 0); }
+    to   { transform: scale(1.18) translate(-3%, -2.5%); }
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, var(--overlay-1) 0%, var(--overlay-2) 100%);
+    backdrop-filter: blur(6px) saturate(1.2);
+    -webkit-backdrop-filter: blur(6px) saturate(1.2);
+    z-index: -1;
+    transition: background 0.7s ease;
+}

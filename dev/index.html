@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="meta-description" name="description" content="Portfolio de Ezequiel Garcia Gilabert, desarrollador Senior .NET Full Stack en Buenos Aires.">
+    <meta id="og-description" property="og:description" content="Portfolio de Ezequiel Garcia Gilabert, AI Software Engineer en Buenos Aires.">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/vendor/phosphor-bold.css">
+    <link rel="stylesheet" href="assets/css/vendor/phosphor-fill.css">
+    <link rel="stylesheet" href="assets/css/tailwind.generated.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/components/profile-sidebar.css">
+    <link rel="stylesheet" href="assets/css/components/profile-header.css">
+    <link rel="stylesheet" href="assets/css/components/contact-links.css">
+    <link rel="stylesheet" href="assets/css/components/app-nav.css">
+    <link rel="stylesheet" href="assets/css/components/experience-card.css">
+    <link rel="stylesheet" href="assets/css/components/education-card.css">
+    <link rel="stylesheet" href="assets/css/components/skills.css">
+    <link rel="stylesheet" href="assets/css/components/contact-csharp.css">
+    <link rel="stylesheet" href="assets/css/components/profile-sheet.css">
+    <link rel="stylesheet" href="assets/css/cosmos.css">
+    <link rel="stylesheet" href="assets/css/components/cosmos-view.css">
+</head>
+<body class="app-body">
+
+    <canvas id="space-canvas"></canvas>
+
+    <!-- Keep the fixed avatar outside the main layout container. -->
+    <button id="profile-trigger" class="profile-trigger" aria-label="Abrir perfil" data-i18n-aria-label="profile_open">
+        <img src="assets/img/perfil.jpg" alt="Ezequiel Garcia Gilabert">
+    </button>
+    <main class="glass-card">
+
+        <div id="profile-backdrop" class="profile-backdrop"></div>
+
+        <div class="app-grid">
+
+            <aside class="profile-sidebar col-left" id="profile-sidebar">
+                <div class="profile-sheet-handle"></div>
+                <button id="profile-close" class="profile-close" aria-label="Cerrar perfil" data-i18n-aria-label="profile_close">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+
+                <div class="profile-sidebar-inner">
+                    <div class="profile-header">
+                        <div class="profile-photo-frame">
+                            <img src="assets/img/perfil.jpg" alt="Ezequiel Garcia Gilabert">
+                        </div>
+                        <div>
+                            <h1 class="profile-name">Ezequiel Garcia Gilabert</h1>
+                            <p class="profile-role">AI Software Engineer | .NET</p>
+                            <p class="profile-location">
+                                <a href="https://www.google.com/maps/place/Buenos+Aires" target="_blank" rel="noopener noreferrer" class="profile-location-link" title="Ver Buenos Aires en Google Maps" data-i18n-title="location_map_title">
+                                    <i class="ph-bold ph-map-pin"></i>
+                                    <span>Buenos Aires, Argentina</span>
+                                </a>
+                                <span class="profile-location-divider">|</span>
+                                <span>English: Upper-Intermediate</span>
+                            </p>
+                        </div>
+                        <p id="bio-text" class="profile-bio"></p>
+                    </div>
+
+                    <div class="contact-links">
+                        <div class="contact-links-heading">
+                            <h2 class="contact-links-title" data-i18n="contact_title">Hablemos</h2>
+                            <p class="contact-links-subtitle" data-i18n="contact_subtitle">Elegí el canal que más te convenga</p>
+                        </div>
+                        <div class="contact-links-row">
+                            <a id="email-link" href="mailto:ezequielgarciagilabert@gmail.com" class="contact-method contact-method--email">
+                                <span class="contact-method-icon"><i class="ph-bold ph-envelope-simple" aria-hidden="true"></i></span>
+                                <span class="contact-method-copy"><strong>Email</strong><span>ezequielgarciagilabert@gmail.com</span></span>
+                                <i class="ph-bold ph-arrow-right contact-method-arrow" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/ezequiel-garcia-gilabert" target="_blank" rel="noopener noreferrer" class="contact-method contact-method--linkedin">
+                                <span class="contact-method-icon"><i class="ph-bold ph-linkedin-logo" aria-hidden="true"></i></span>
+                                <span class="contact-method-copy"><strong>LinkedIn</strong><span data-i18n="contact_linkedin_desc">Conectemos profesionalmente</span></span>
+                                <i class="ph-bold ph-arrow-right contact-method-arrow" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://wa.me/5491164135977" target="_blank" rel="noopener noreferrer" class="contact-method contact-method--whatsapp">
+                                <span class="contact-method-icon"><i class="ph-bold ph-whatsapp-logo" aria-hidden="true"></i></span>
+                                <span class="contact-method-copy"><strong>WhatsApp</strong><span data-i18n="contact_whatsapp_desc">Respuesta rápida</span></span>
+                                <i class="ph-bold ph-arrow-right contact-method-arrow" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="panel-right col-right skills-scroll">
+                <div class="panel-content">
+
+                    <nav class="app-nav">
+                        <div class="app-nav-tabs" role="tablist" aria-label="Secciones del portfolio" data-i18n-aria-label="tablist_label">
+                            <button id="tab-btn-experience" class="app-nav-tab active" type="button" role="tab" aria-selected="true" aria-controls="tab-experience" tabindex="0" data-tab="experience" data-i18n="nav_exp">Experiencia</button>
+                            <button id="tab-btn-skills" class="app-nav-tab" type="button" role="tab" aria-selected="false" aria-controls="tab-skills" tabindex="-1" data-tab="skills" data-i18n="nav_skills">Habilidades</button>
+                            <button id="tab-btn-education" class="app-nav-tab" type="button" role="tab" aria-selected="false" aria-controls="tab-education" tabindex="-1" data-tab="education" data-i18n="nav_edu">Educación</button>
+                            <button id="tab-btn-contact" class="app-nav-tab" type="button" role="tab" aria-selected="false" aria-controls="tab-contact" tabindex="-1" data-tab="contact" data-i18n="nav_contact">Contacto</button>
+                        </div>
+
+                        <div class="app-nav-toggles">
+                            <button id="lang-toggle-btn" type="button" class="btn-toggle" title="Cambiar idioma" data-i18n-title="language_toggle_title">
+                                <i class="ph-bold ph-globe"></i>
+                                <span id="lang-label">ES / EN</span>
+                            </button>
+                            <button id="theme-toggle-btn" type="button" class="btn-toggle" title="Cambiar tema" data-i18n-title="theme_toggle_title">
+                                <i id="theme-icon" class="ph-bold ph-sun"></i>
+                                <span class="btn-toggle-label" data-i18n="theme_toggle_label">Modo</span>
+                            </button>
+                            <button id="cosmos-view-toggle" class="btn-toggle cosmos-view-toggle" type="button" aria-label="Contemplar el fondo cósmico" data-i18n-aria-label="cosmos_toggle_label" aria-pressed="false" title="Contemplar el fondo cósmico" data-i18n-title="cosmos_toggle_label">
+                                <i class="ph-bold ph-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </nav>
+
+                    <div id="tab-experience" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-experience" tabindex="0">
+                        <h2 data-i18n="title_exp" class="tab-title">Experiencia Laboral</h2>
+                        <div id="experience-container" class="tab-body tab-body--exp"></div>
+                    </div>
+
+                    <div id="tab-skills" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-skills" tabindex="0" aria-hidden="true" hidden>
+                        <h2 data-i18n="title_skills" class="tab-title tab-title--spacious">Habilidades Técnicas</h2>
+                        <div id="skills-container"></div>
+                    </div>
+
+                    <div id="tab-education" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-education" tabindex="0" aria-hidden="true" hidden>
+                        <h2 data-i18n="title_edu" class="tab-title">Educación y Calificaciones</h2>
+                        <div id="education-container" class="tab-body tab-body--edu"></div>
+                    </div>
+
+                    <div id="tab-contact" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-contact" tabindex="0" aria-hidden="true" hidden>
+                        <h2 data-i18n="title_contact" class="tab-title">¿Qué tenés en mente?</h2>
+                        <p data-i18n="sub_contact" class="tab-subtitle">Mandame un mensaje, contame tu idea y vemos qué podemos hacer!</p>
+
+                        <div class="contact-ide">
+                            <div class="contact-ide__titlebar">
+                                <div class="contact-ide__controls">
+                                    <span class="red"></span>
+                                    <span class="yellow"></span>
+                                    <span class="green"></span>
+                                </div>
+                                <div class="contact-ide__title">
+                                    <i class="ph-bold ph-file-c-sharp"></i>
+                                    <strong>ContactController.cs</strong>
+                                </div>
+                            </div>
+
+                            <form id="contact-form" class="contact-ide__code">
+                                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">1</span>
+                                    <span class="contact-ide__line-content"><span class="kw">using</span> <span class="var">Microsoft.AspNetCore.Mvc</span><span class="pun">;</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">2</span>
+                                    <span class="contact-ide__line-content"><span class="kw">using</span> <span class="var">System.Threading.Tasks</span><span class="pun">;</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">3</span>
+                                    <span class="contact-ide__line-content"></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">4</span>
+                                    <span class="contact-ide__line-content"><span class="cmt">// Endpoint that receives messages from the portfolio</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">5</span>
+                                    <span class="contact-ide__line-content"><span class="attr">[ApiController]</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">6</span>
+                                    <span class="contact-ide__line-content"><span class="attr">[Route(</span><span class="str">"api/contact"</span><span class="attr">)]</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">7</span>
+                                    <span class="contact-ide__line-content"><span class="kw">public class</span> <span class="type">ContactController</span> <span class="pun">:</span> <span class="type">ControllerBase</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">8</span>
+                                    <span class="contact-ide__line-content"><span class="pun">{</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">9</span>
+                                    <span class="contact-ide__line-content">    <span class="attr">[HttpPost]</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">10</span>
+                                    <span class="contact-ide__line-content">    <span class="kw">public async</span> <span class="type">Task</span><span class="pun">&lt;</span><span class="type">IActionResult</span><span class="pun">&gt;</span> <span class="attr">SendAsync</span><span class="pun">()</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">11</span>
+                                    <span class="contact-ide__line-content">    <span class="pun">{</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">12</span>
+                                    <span class="contact-ide__line-content">        <span class="cmt">// Build the request with the form data</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">13</span>
+                                    <span class="contact-ide__line-content">        <span class="kw">var</span> <span class="var">request</span> <span class="op">=</span> <span class="kw2">new</span> <span class="type">ContactRequest</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">14</span>
+                                    <span class="contact-ide__line-content">        <span class="pun">{</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">15</span>
+                                    <span class="contact-ide__line-content">            <span class="key">Name</span> <span class="op">=</span> <input id="contact-name" type="text" class="contact-ide__input" maxlength="45" placeholder="Tu nombre" data-i18n-placeholder="ph_name" required autocomplete="name"><span class="pun">,</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">16</span>
+                                    <span class="contact-ide__line-content">            <span class="key">Email</span> <span class="op">=</span> <input id="contact-email" type="email" class="contact-ide__input" maxlength="45" placeholder="tu@email.com" data-i18n-placeholder="ph_email" required autocomplete="email"><span class="pun">,</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">17</span>
+                                    <span class="contact-ide__line-content">            <span class="key">Message</span> <span class="op">=</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">18</span>
+                                    <span class="contact-ide__line-content"><span class="contact-ide__textarea-wrap">
+                                                <i class="ph-bold ph-chat-text contact-ide__textarea-icon"></i>
+                                                <textarea id="contact-message" class="contact-ide__textarea" maxlength="150" placeholder="Contame tu idea, tu proyecto o lo que necesites..." data-i18n-placeholder="ph_message" required></textarea>
+                                            </span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">19</span>
+                                    <span class="contact-ide__line-content">        <span class="pun">};</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">20</span>
+                                    <span class="contact-ide__line-content"></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">21</span>
+                                    <span class="contact-ide__line-content">        <span class="kw">await</span> <span class="var">_service</span><span class="pun">.</span><span class="attr">SendAsync</span><span class="pun">(</span><span class="var">request</span><span class="pun">);</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">22</span>
+                                    <span class="contact-ide__line-content">        <span class="kw2">return</span> <span class="attr">Ok</span><span class="pun">();</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">23</span>
+                                    <span class="contact-ide__line-content">    <span class="pun">}</span></span>
+                                </div>
+                                <div class="contact-ide__line">
+                                    <span class="contact-ide__line-num">24</span>
+                                    <span class="contact-ide__line-content"><span class="pun">}</span></span>
+                                </div>
+
+                                <div id="contact-output" class="contact-ide__feedback hidden">
+                                    <i class="ph-bold ph-check-circle"></i>
+                                    <span id="contact-out-text" data-i18n="toast_send">Mensaje enviado correctamente.</span>
+                                </div>
+
+                                <div class="contact-ide__footer">
+                                    <span class="contact-ide__counter">
+                                        <i class="ph-bold ph-text-aa"></i>
+                                        <span id="contact-counter">0 / 150</span>
+                                    </span>
+                                    <button type="submit" class="contact-ide__btn">
+                                        <i class="ph-bold ph-play"></i>
+                                        <span>SendAsync()</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <button id="cosmos-view-theme-toggle" class="cosmos-view-exit cosmos-view-theme-toggle" type="button" aria-label="Cambiar modo oscuro o claro" data-i18n-aria-label="cosmos_theme_toggle_label" title="Cambiar modo oscuro o claro" data-i18n-title="cosmos_theme_toggle_label" hidden>
+        <i id="cosmos-view-theme-icon" class="ph-bold ph-sun" aria-hidden="true"></i>
+    </button>
+    <button id="cosmos-view-exit" class="cosmos-view-exit" type="button" aria-label="Volver al portfolio" data-i18n-aria-label="cosmos_exit_label" title="Volver al portfolio" data-i18n-title="cosmos_exit_label" hidden>
+        <i class="ph-bold ph-eye-slash" aria-hidden="true"></i>
+    </button>
+
+    <script src="assets/js/core/events.js"></script>
+    <script src="assets/js/core/storage.js"></script>
+    <script src="assets/js/core/dom.js"></script>
+
+    <script src="assets/js/data/translations.js"></script>
+    <script src="assets/js/data/icons.js"></script>
+    <script src="assets/js/data/skills.js"></script>
+    <script src="assets/js/data/experience.js"></script>
+    <script src="assets/js/data/education.js"></script>
+
+    <script src="assets/js/ui/toast.js"></script>
+    <script src="assets/js/ui/i18n.js"></script>
+    <script src="assets/js/ui/tabs.js"></script>
+    <script src="assets/js/ui/profile-cards.js"></script>
+    <script src="assets/js/ui/contact.js"></script>
+    <script src="assets/js/ui/icon.js"></script>
+    <script src="assets/js/ui/mobile-sheet.js"></script>
+
+    <script src="assets/js/ui/render-skills.js"></script>
+    <script src="assets/js/ui/render-experience.js"></script>
+    <script src="assets/js/ui/render-education.js"></script>
+
+    <script src="assets/js/cosmos/transition.js"></script>
+    <script src="assets/js/cosmos/state.js"></script>
+    <script src="assets/js/cosmos/fragments.js"></script>
+
+    <script src="assets/js/cosmos/planets/definitions.js"></script>
+    <script src="assets/js/cosmos/planets/physics.js"></script>
+    <script src="assets/js/cosmos/planets/draw-earth.js"></script>
+    <script src="assets/js/cosmos/planets/draw-moon.js"></script>
+    <script src="assets/js/cosmos/planets/draw-saturn.js"></script>
+    <script src="assets/js/cosmos/planets/draw-mars.js"></script>
+    <script src="assets/js/cosmos/planets/destruction.js"></script>
+    <script src="assets/js/cosmos/planets/index.js"></script>
+
+    <script src="assets/js/cosmos/asteroids/config.js"></script>
+    <script src="assets/js/cosmos/asteroids/belts.js"></script>
+    <script src="assets/js/cosmos/asteroids/draw-satellite.js"></script>
+    <script src="assets/js/cosmos/asteroids/draw-iss.js"></script>
+    <script src="assets/js/cosmos/asteroids/draw-spaceship.js"></script>
+    <script src="assets/js/cosmos/asteroids/collisions.js"></script>
+    <script src="assets/js/cosmos/asteroids/index.js"></script>
+
+    <script src="assets/js/cosmos/sun/em-waves.js"></script>
+    <script src="assets/js/cosmos/sun/coronal-loops.js"></script>
+    <script src="assets/js/cosmos/sun/flares.js"></script>
+    <script src="assets/js/cosmos/sun/red-giant.js"></script>
+    <script src="assets/js/cosmos/sun/white-dwarf.js"></script>
+    <script src="assets/js/cosmos/sun/index.js"></script>
+
+    <script src="assets/js/cosmos/shockwaves/waves.js"></script>
+    <script src="assets/js/cosmos/shockwaves/supernova.js"></script>
+    <script src="assets/js/cosmos/shockwaves/index.js"></script>
+
+    <script src="assets/js/cosmos/particles.js"></script>
+    <script src="assets/js/cosmos/engine.js"></script>
+
+    <script src="assets/js/ui/theme.js"></script>
+    <script src="assets/js/ui/cosmos-view.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
