@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0807">
+<title>Próximamente...</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,500&display=swap" rel="stylesheet">
+
+<link rel="preload" as="video" type="video/mp4"
+      media="(max-width: 899px)"
+      href="https://videos.pexels.com/video-files/9370435/9370435-hd_1080_1920_24fps.mp4">
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="stage-root">
+
+    <div class="mix-stage" id="mixStage" aria-hidden="true">
+      <video class="mix-layer" muted loop playsinline webkit-playsinline
+             disablepictureinpicture preload="auto" fetchpriority="high"
+             poster="assets/poster.jpg"
+             data-mix-index="0">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-hd_1080_1920_24fps.mp4" type="video/mp4" media="(max-width: 899px)">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-uhd_2160_3840_24fps.mp4" type="video/mp4" media="(min-width: 900px)">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-hd_1080_1920_24fps.mp4" type="video/mp4">
+      </video>
+
+      <video class="mix-layer" muted loop playsinline webkit-playsinline
+             disablepictureinpicture preload="metadata"
+             poster="assets/poster.jpg"
+             data-mix-index="1">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-hd_1080_1920_24fps.mp4" type="video/mp4" media="(max-width: 899px)">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-uhd_2160_3840_24fps.mp4" type="video/mp4" media="(min-width: 900px)">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-hd_1080_1920_24fps.mp4" type="video/mp4">
+      </video>
+
+      <video class="mix-layer" muted loop playsinline webkit-playsinline
+             disablepictureinpicture preload="metadata"
+             poster="assets/poster.jpg"
+             data-mix-index="2">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-hd_1080_1920_24fps.mp4" type="video/mp4" media="(max-width: 899px)">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-uhd_2160_3840_24fps.mp4" type="video/mp4" media="(min-width: 900px)">
+        <source src="https://videos.pexels.com/video-files/9370435/9370435-hd_1080_1920_24fps.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="overlay overlay--gradient" aria-hidden="true"></div>
+    <div class="overlay overlay--warm" aria-hidden="true"></div>
+    <div class="overlay overlay--grain" aria-hidden="true"></div>
+
+    <div class="paparazzi" id="paparazzi" aria-hidden="true"></div>
+
+    <main class="content-stage" id="contentStage">
+      <div class="content">
+
+        <h1 class="headline">Estas listo para<br><span class="headline__accent">alcanzar tu máximo potencial.. ?</span></h1>
+
+        <p class="subtitle" id="subtitleTypewriter" aria-live="polite">No hace falta suerte. Hace falta <strong>idea, estructura y cabeza</strong>. Con eso, se logra lo que sea.</p>
+
+        <div class="footer">
+          <div class="eyebrow">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            <span>Próximamente</span>
+          </div>
+
+          <div class="progress" role="status" aria-label="Progreso del proyecto">
+            <span>Avanzando</span>
+            <div class="progress__track" aria-hidden="true">
+              <div class="progress__fill"></div>
+            </div>
+            <span class="progress__value">0%</span>
+          </div>
+
+          <a class="credit"
+             href="https://ezgilabert.github.io/ezequiel-dev/"
+             target="_blank"
+             rel="noopener noreferrer"
+             title="Sitio de Ezequiel García Gilabert">
+            Ezequiel García Gilabert
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="js/video-stage.js" defer></script>
+  <script src="js/content-effects.js" defer></script>
+  <script src="js/paparazzi.js" defer></script>
+  <script src="js/script.js" defer></script>
+
+</body>
+</html>
